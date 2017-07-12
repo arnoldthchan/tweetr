@@ -6,6 +6,7 @@
 
 function createTweetElement(tweetData){
 //jQUERY METHOD
+  //TIME
   var seconds = tweetData.created_at/1000;
   var hours = seconds / 360;
   var days = Math.round(hours / 24);
@@ -13,6 +14,7 @@ function createTweetElement(tweetData){
   var createTime = new Date(tweetData["created_at"]);
   let timeAgo = Math.floor((currentTime - createTime) / 1000);
 
+  //USER
   var newTweet = $('<article>').addClass('tweet trans');
   var image = $('<img>').addClass('avatar').attr('src', tweetData.user.avatars.regular);
   var name = $('<span>').addClass('name').text(tweetData.user.name);
@@ -68,21 +70,43 @@ $(document).ready(function(){
       method: 'GET',
       success: function(tweets) {
         renderTweets(tweets);
-        loadTweets();
-        }
+      }
     });
   }
+  $('form').on('submit', function(event){
+    var input = $(this).find('textarea').val();
+    event.preventDefault()
+    if(input.length >= 145){
+      //flash message for too many characters
+      alert('over 140');
+      return;
+    } else if(input === ''){
+      //flash message for nothing inside
+      setTimeout(function(){
+        $(this).append(`<span class='char-limit'>Tweet is empty!</span`);
+        }, 1000);
+      return;
+    }
+    $.ajax({
+      url: 'tweets',
+      type: 'POST',
+      data: { text: input },
+      success: function() {
+        console.log('Adding Tweet');
+        loadTweets();
+      }
+    });
+  });
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
     $composeTweetBox.slideToggle();
     //VVV DONT WORK VVV
-    if($composeTweetBox.is(":hidden")){
-      $(this).closest('body').find('textarea').select();
-    } else{
-      console.log('asd');
-    }
+    // if($composeTweetBox.is(":hidden")){
+    //   $(this).closest('body').find('textarea').select();
+    // } else{
+    //   console.log('asd');
+    // }
     //^^^ DONT WORK ^^^
     });
-
   loadTweets();
 });
