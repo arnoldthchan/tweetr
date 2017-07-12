@@ -64,7 +64,7 @@ function renderTweets(tweets) {
 
 $(document).ready(function(){
   function loadTweets(){
-    console.log('Performing ajax call...');
+    console.log('Performing ajax GET call...');
     $.ajax({
       url: 'tweets',
       method: 'GET',
@@ -76,7 +76,7 @@ $(document).ready(function(){
   $('form').on('submit', function(event){
     var input = $(this).find('textarea').val();
     event.preventDefault()
-    if(input.length >= 145){
+    if(input.length >= 140){
       //flash message for too many characters
         $(this).append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
         setTimeout(function(){
@@ -102,15 +102,13 @@ $(document).ready(function(){
   });
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
-    $composeTweetBox.slideToggle();
-    $composeTweetBox.find('textarea').select();
-    //VVV DONT WORK VVV
-    // if($composeTweetBox.is(":hidden")){
-    //   $(this).closest('body').find('textarea').select();
-    // } else{
-    //   console.log('asd');
-    // }
-    //^^^ DONT WORK ^^^
+    if($composeTweetBox.css('display') == 'none'){
+      console.log('highlight');
+      $composeTweetBox.slideToggle();
+      $(this).closest('body').find('textarea').select();
+    } else{
+      $composeTweetBox.slideToggle();
+    }
     });
   loadTweets();
 });
