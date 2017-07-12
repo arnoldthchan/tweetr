@@ -78,13 +78,16 @@ $(document).ready(function(){
     event.preventDefault()
     if(input.length >= 145){
       //flash message for too many characters
-      alert('over 140');
+        $(this).append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
+        setTimeout(function(){
+          $('span#error').remove();
+        }, 2000);
       return;
     } else if(input === ''){
-      //flash message for nothing inside
-      setTimeout(function(){
-        $(this).append(`<span class='char-limit'>Tweet is empty!</span`);
-        }, 1000);
+        $(this).append(`<span id='error' class='char-limit'>Tweet is empty</span>`);
+        setTimeout(function(){
+          $('span#error').remove();
+        }, 2000);
       return;
     }
     $.ajax({
@@ -100,6 +103,7 @@ $(document).ready(function(){
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
     $composeTweetBox.slideToggle();
+    $composeTweetBox.find('textarea').select();
     //VVV DONT WORK VVV
     // if($composeTweetBox.is(":hidden")){
     //   $(this).closest('body').find('textarea').select();
