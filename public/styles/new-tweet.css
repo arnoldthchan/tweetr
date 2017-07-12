@@ -25,6 +25,10 @@ section.new-tweet{
 .trans-on{
   opacity: .6;
 }
+#compose:hover{
+  background-color: white;
+  color: black;
+}
 .icons{
   float: right;
   color: #00a087;
