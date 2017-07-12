@@ -1,11 +1,12 @@
 $(document).ready(function(){
-  $('article.tweet').addClass('trans-on');
-  $('article.tweet').on('mouseover', function(){
-    $(this).removeClass('trans-on');
+
+  $('#tweets-container').on('mouseenter', 'article', function(){
+    $(this).removeClass('trans');
     $(this).find('span.icons').show();
   });
-  $('article.tweet').on('mouseleave', function(){
-    $(this).addClass('trans-on');
+  $('#tweets-container').on('mouseleave', 'article', function(){
+    $(this).addClass('trans');
     $(this).find('span.icons').hide();
   });
 });
+

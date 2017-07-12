@@ -22,7 +22,7 @@ section.new-tweet{
 .char-limit{
   color: red;
 }
-.trans-on{
+.trans{
   opacity: .6;
 }
 #compose:hover{
@@ -52,7 +52,11 @@ article.tweet{
   border: 2px solid #d3d3d3;
   margin: 15px auto;
   width: 80%;
-}
+/*  opacity: 0.6;
+*/}
+/*article.tweet:hover{
+  opacity:1;
+}*/
 article.tweet header{
   background-color: #eee;
   font-size: 150%;

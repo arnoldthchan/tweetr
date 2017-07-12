@@ -13,7 +13,7 @@ function createTweetElement(tweetData){
   var createTime = new Date(tweetData["created_at"]);
   let timeAgo = Math.floor((currentTime - createTime) / 1000);
 
-  var newTweet = $('<article>').addClass('tweet trans-on');
+  var newTweet = $('<article>').addClass('tweet trans');
   var image = $('<img>').addClass('avatar').attr('src', tweetData.user.avatars.regular);
   var name = $('<span>').addClass('name').text(tweetData.user.name);
   var handle = $('<span>').addClass('handle').text(tweetData.user.handle);
@@ -59,37 +59,30 @@ function renderTweets(tweets) {
   }
 }
 
+
 $(document).ready(function(){
   function loadTweets(){
-    // console.log('Performing ajax call...');
+    console.log('Performing ajax call...');
     $.ajax({
       url: 'tweets',
       method: 'GET',
       success: function(tweets) {
         renderTweets(tweets);
+        loadTweets();
         }
     });
   }
-  $('form').on('submit', function(event){
-    var input = $(this).find('textarea').val();
-    event.preventDefault()
-    if(input.length >= 145){
-      return;
-    } else if(input === ''){
-      return;
-    }
-    $.ajax({
-      url: 'tweets',
-      type: 'POST',
-      data: { text: input },
-      success: function() {
-        console.log('adding');
-        loadTweets();
-      }
-    });
-  });
   $('#compose').on('click', function(event){
-    console.log($(this));
-  });
+    var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
+    $composeTweetBox.slideToggle();
+    //VVV DONT WORK VVV
+    if($composeTweetBox.is(":hidden")){
+      $(this).closest('body').find('textarea').select();
+    } else{
+      console.log('asd');
+    }
+    //^^^ DONT WORK ^^^
+    });
+
   loadTweets();
 });
