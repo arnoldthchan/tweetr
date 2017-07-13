@@ -48,49 +48,4 @@ section#tweets-container{
   background-color: white;
   color: #244751;
 }
-article.tweet{
-  border-radius: 5px;
-  border: 2px solid #d3d3d3;
-  margin: 15px auto;
-  width: 80%;
-  overflow: hidden;
-}
-
-article.tweet header{
-  display:block;
-  background-color: #eee;
-  font-size: 150%;
-  font-weight: bold;
-  height: 75px;
-  width: 100%;
-}
-article.tweet img.avatar{
-  float: left;
-  width: 75px;
-  height: 75px;
-  padding: 10px;
-  border-radius: 15px;
-}
-article.tweet span.name{
-  padding: 10px 5px;
-  position: static;
-  width: 45%;
-  display: inline-block;
-}
-article.tweet span.handle{
-  font-size: 50%;
-  font-weight: normal;
-  color: #b3b3b3;
-  padding: 15px 10px;
-  float: right;
-}
-article.tweet p.tweet-text{
-  padding: 1em 1em;
-  word-wrap: break-word;
-}
-article.tweet footer{
-  border-top:1px solid #eee;
-  padding: 10px;
-  font-size: 75%;
-}
 
