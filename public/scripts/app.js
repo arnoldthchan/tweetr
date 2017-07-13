@@ -5,7 +5,6 @@
  */
 
 function createTweetElement(tweetData){
-//jQUERY METHOD
   //TIME
   const seconds = tweetData.created_at/1000;
   const hours = seconds / 360;
@@ -33,25 +32,6 @@ function createTweetElement(tweetData){
   newTweet.append(header, tweetText, footer);
   return newTweet
   // console.log(seconds);
-
-//UNSAFE, DO NOT USE, EVEN THOUGH ITS NICER
-  // newTweet =
-  //   `<article class='tweet'>
-  //   <header>
-  //     <img class='avatar' src='${tweetData.user.avatars.regular}'>
-  //     <span class='name'>${tweetData.user.name}</span>
-  //     <span class='handle'>${tweetData.user.handle}</span>
-  //   </header>
-  //     <div class='tweet-text'>${tweetData.content.text}</div>
-  //   <footer class='tweet'>${date}
-  //     <span class='icons'>
-  //       <a href='' ><i class='fa fa-flag'></i></a>
-  //       <a href='' ><i class='fa fa-retweet'></i></a>
-  //       <a href='' ><i class='fa fa-heart'></i></a>
-  //     </span>
-  //   </footer>
-  //   </article>`
-
 }
 
 ////PREPEND JUST THE NEW TWEET INSTEAD OF LOADING IT ALL
@@ -91,7 +71,6 @@ $(document).ready(function(){
   });
 
   function validateTweetPost(tweet){
-  ////FORM VALIDATION HELPER FUNCTION
     if(tweet.length >= 140){
       $('span#error').remove();
       $('form').append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
@@ -107,16 +86,16 @@ $(document).ready(function(){
       }, 1500);
     return;
   }
-  $.ajax({
-    url: 'tweets',
-    type: 'POST',
-    data: { text: tweet },
-    success: function() {
-      $('textarea').val('');
-      console.log('Adding Tweet');
-      loadTweets();
-    }
-  });
+    $.ajax({
+      url: 'tweets',
+      type: 'POST',
+      data: { text: tweet },
+      success: function() {
+        $('textarea').val('');
+        console.log('Adding Tweet');
+        loadTweets();
+      }
+    });
   }
   loadTweets();
 });

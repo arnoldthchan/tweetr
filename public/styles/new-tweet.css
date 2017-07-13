@@ -52,6 +52,8 @@ article.tweet{
   border: 2px solid #d3d3d3;
   margin: 15px auto;
   width: 80%;
+  overflow: hidden;
+
 }
 
 article.tweet header{
