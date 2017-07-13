@@ -7,28 +7,28 @@
 function createTweetElement(tweetData){
 //jQUERY METHOD
   //TIME
-  var seconds = tweetData.created_at/1000;
-  var hours = seconds / 360;
-  var days = Math.round(hours / 24);
-  let currentTime = new Date(Date.now());
-  var createTime = new Date(tweetData["created_at"]);
-  let timeAgo = Math.floor((currentTime - createTime) / 1000);
+  const seconds = tweetData.created_at/1000;
+  const hours = seconds / 360;
+  const days = Math.round(hours / 24);
+  const currentTime = new Date(Date.now());
+  const createTime = new Date(tweetData["created_at"]);
+  const timeAgo = Math.floor((currentTime - createTime) / 1000);
   //USER
-  var newTweet = $(`<article class='tweet trans'>`);
-  var image = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
-  var name = $(`<span class='name'>`).text(tweetData.user.name);
-  var handle = $(`<span class='handle'>`).text(tweetData.user.handle);
-  var header = $(`<header>`).append(image, name, handle);
+  const newTweet = $(`<article class='tweet trans'>`);
+  const image = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
+  const name = $(`<span class='name'>`).text(tweetData.user.name);
+  const handle = $(`<span class='handle'>`).text(tweetData.user.handle);
+  const header = $(`<header>`).append(image, name, handle);
 
-  var tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
+  const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
-  var icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
-  var icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
-  var icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
-  var span = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+  const icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
+  const icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
+  const icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
+  const span = $(`<span class='icons'>`).append(icon1, icon2, icon3)
 
-  var footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
-  var timeCreated = tweetData.created_at;
+  const footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
+  const timeCreated = tweetData.created_at;
 
   newTweet.append(header, tweetText, footer);
   return newTweet
@@ -77,33 +77,9 @@ $(document).ready(function(){
   $('form').on('submit', function(event){
     var input = $(this).find('textarea').val();
     event.preventDefault()
-    ////FORM VALIDATION HELPER FUNCTION
-    if(input.length >= 140){
-        $('span#error').remove();
-        $(this).append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
-        setTimeout(function(){
-          $('span#error').remove();
-        }, 1500);
-      return;
-    } else if(input === ''){
-        $('span#error').remove();
-        $(this).append(`<span id='error' class='char-limit'>Tweet is empty</span>`);
-        setTimeout(function(){
-          $('span#error').remove();
-        }, 1500);
-      return;
-    }
-    $.ajax({
-      url: 'tweets',
-      type: 'POST',
-      data: { text: input },
-      success: function() {
-        $('textarea').val('');
-        console.log('Adding Tweet');
-        loadTweets();
-      }
-    });
+    validateTweetPost(input);
   });
+
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
     if($composeTweetBox.css('display') === 'none'){
@@ -112,6 +88,35 @@ $(document).ready(function(){
     } else{
       $composeTweetBox.slideToggle();
     }
-    });
+  });
+
+  function validateTweetPost(tweet){
+  ////FORM VALIDATION HELPER FUNCTION
+    if(tweet.length >= 140){
+      $('span#error').remove();
+      $('form').append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
+      setTimeout(function(){
+        $('span#error').remove();
+      }, 1500);
+    return;
+  } else if(tweet === ''){
+      $('span#error').remove();
+      $('form').append(`<span id='error' class='char-limit'>Tweet is blank</span>`);
+      setTimeout(function(){
+        $('span#error').remove();
+      }, 1500);
+    return;
+  }
+  $.ajax({
+    url: 'tweets',
+    type: 'POST',
+    data: { text: tweet },
+    success: function() {
+      $('textarea').val('');
+      console.log('Adding Tweet');
+      loadTweets();
+    }
+  });
+  }
   loadTweets();
 });
