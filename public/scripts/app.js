@@ -7,13 +7,7 @@
 // "use strict";
 
 function createTweetElement(tweetData){
-  //TIME
-  const seconds = tweetData.created_at/1000;
-  const hours = seconds / 360;
-  const days = Math.round(hours / 24);
-  const currentTime = new Date(Date.now());
-  const createTime = new Date(tweetData["created_at"]);
-  const timeAgo = Math.floor((currentTime - createTime) / 1000);
+
   //USER
   const newTweet = $(`<article class='tweet trans'>`);
   const image    = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
@@ -31,7 +25,7 @@ function createTweetElement(tweetData){
   const icon3 = $(`<i class='fa fa-heart'>`);
   const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
 
-  const footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
+  const footer = $(`<footer class='tweet'>`).text(calculateSince(tweetData.created_at)).append(span);
   const timeCreated = tweetData.created_at;
 
   newTweet.append(header, tweetText, footer);
