@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// "use strict";
+"use strict";
 
 function createTweetElement(tweetData){
 
@@ -17,9 +17,6 @@ function createTweetElement(tweetData){
 
   const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
-  // const icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
-  // const icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
-  // const icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
   const icon1 = $(`<i class='fa fa-flag'>`);
   const icon2 = $(`<i class='fa fa-retweet'>`);
   const icon3 = $(`<i class='fa fa-heart'>`);
@@ -30,10 +27,8 @@ function createTweetElement(tweetData){
 
   newTweet.append(header, tweetText, footer);
   return newTweet
-  // console.log(seconds);
 }
 
-////PREPEND JUST THE NEW TWEET INSTEAD OF LOADING IT ALL
 function renderTweets(tweets) {
   $('#tweets-container').empty();
   for (let i in tweets){
@@ -44,7 +39,6 @@ function renderTweets(tweets) {
 
 $(document).ready(function(){
   function loadTweets(){
-    // console.log('Performing ajax GET call...');
     $.ajax({
       url: 'tweets',
       method: 'GET',
@@ -92,7 +86,6 @@ $(document).ready(function(){
       success: function() {
         $('textarea').val('');
         $('span.counter').html('140');
-        // console.log('Adding Tweet');
         loadTweets();
       }
     });

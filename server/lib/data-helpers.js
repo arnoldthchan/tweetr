@@ -14,21 +14,10 @@ module.exports = function makeDataHelpers(db) {
       callback(null, true);
     },
 
-    //ASD saveTweet: function(newTweet, callback) {
-    //ASD   simulateDelay(() => {
-    //ASD     db.tweets.push(newTweet);
-    //ASD     callback(null, true);
-    //ASD   });
-    //ASD },
-
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
       db.collection("tweets").find().toArray(callback);
     }
-      //ASD simulateDelay(() => {
-      //ASD   const sortNewestFirst = (a, b) => a.created_at - b.created_at;
-      //ASD   callback(null, db.tweets.sort(sortNewestFirst));
-      //ASD });
 
   };
 }
