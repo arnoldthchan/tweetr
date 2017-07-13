@@ -33,7 +33,7 @@ main.container{
   background-color: white;
 }
 
-@media (max-width: 380px){
+@media (max-width: 450px){
   main.container{
     width: 100%;
     display: block;
