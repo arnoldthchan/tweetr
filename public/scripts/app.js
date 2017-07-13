@@ -8,7 +8,7 @@
 
 function createTweetElement(tweetData){
 
-  //USER
+  //User Creation
   const newTweet = $(`<article class='tweet trans'>`);
   const image    = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
   const name     = $(`<span class='name'>`).text(tweetData.user.name);

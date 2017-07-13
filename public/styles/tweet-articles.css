@@ -12,7 +12,6 @@ article.tweet header{
   font-size: 150%;
   font-weight: bold;
   height: 75px;
-  width: 100%;
 }
 article.tweet img.avatar{
   float: left;
@@ -33,6 +32,7 @@ article.tweet span.handle{
   color: #b3b3b3;
   padding: 15px 10px;
   float: right;
+  display: block;
 }
 article.tweet p.tweet-text{
   padding: 1em 1em;
@@ -42,4 +42,30 @@ article.tweet footer{
   border-top:1px solid #eee;
   padding: 10px;
   font-size: 75%;
+}
+@media (max-width: 450px){
+  article.tweet img.avatar{
+    display: none;
+  }
+  article.tweet span.name{
+    font-size: 85%;
+    padding:5%;
+    margin: auto;
+    text-align: center;
+    width:100%;
+    line-height: 100%;
+  }
+  article.tweet span.handle{
+    float: none;
+    padding:0;
+    text-align: center;
+  }
+  article.tweet footer{
+    float:none;
+    text-align: center;
+  }
+  article.tweet p.tweet-text{
+    text-align: center;
+    padding:0;
+  }
 }

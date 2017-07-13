@@ -6,6 +6,7 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
+const sass          = require('node-sass');
 
 const Mongo       = require("mongodb");
 const MongoClient = Mongo.MongoClient;
@@ -14,8 +15,20 @@ const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+/*
+sass.render({
+  file: scss_filename,
+  [, options..]
+}, function(err, result) { ASDASD});
+// OR
+var result = sass.renderSync({
+  data: scss_content
+  [, options..]
+});
+*/
+
+
 // The in-memory database of tweets. It's a basic object with an array in it.
-//ASD const db = require("./lib/in-memory-db");
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) throw err;
   console.log(`Successfully connected to DB: ${MONGODB_URI}`);
@@ -36,9 +49,4 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
-
-// The `data-helpers` module provides an interface to the database of tweets.
-// This simple interface layer has a big benefit: we could switch out the
-// actual database it uses and see little to no changes elsewhere in the code
-// (HINT HINT).
 

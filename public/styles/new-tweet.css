@@ -9,6 +9,7 @@ h2{
 textarea{
   padding: 5px;
   width: 100%;
+  resize: none;
 }
 section.new-tweet{
   width: 80%;
@@ -49,3 +50,21 @@ section#tweets-container{
   color: #244751;
 }
 
+@media (max-width: 450px){
+  h2{
+    text-align: center;
+  }
+  textarea{
+    font-size:75%;
+  }
+  span.icons{
+    display: block;
+    float:none;
+    margin:auto;
+  }
+  section.new-tweet{
+    margin-top: auto;
+    display: block;
+
+  }
+}
