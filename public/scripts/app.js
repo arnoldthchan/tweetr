@@ -4,6 +4,8 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// "use strict";
+
 function createTweetElement(tweetData){
   //TIME
   const seconds = tweetData.created_at/1000;
@@ -21,9 +23,12 @@ function createTweetElement(tweetData){
 
   const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
-  const icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
-  const icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
-  const icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
+  // const icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
+  // const icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
+  // const icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
+  const icon1 = $(`<i class='fa fa-flag'>`);
+  const icon2 = $(`<i class='fa fa-retweet'>`);
+  const icon3 = $(`<i class='fa fa-heart'>`);
   const span = $(`<span class='icons'>`).append(icon1, icon2, icon3)
 
   const footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
@@ -92,7 +97,8 @@ $(document).ready(function(){
       data: { text: tweet },
       success: function() {
         $('textarea').val('');
-        console.log('Adding Tweet');
+        $('span.counter').html('140');
+        // console.log('Adding Tweet');
         loadTweets();
       }
     });
