@@ -13,22 +13,23 @@ function createTweetElement(tweetData){
   let currentTime = new Date(Date.now());
   var createTime = new Date(tweetData["created_at"]);
   let timeAgo = Math.floor((currentTime - createTime) / 1000);
-
   //USER
-  var newTweet = $('<article>').addClass('tweet trans');
-  var image = $('<img>').addClass('avatar').attr('src', tweetData.user.avatars.regular);
-  var name = $('<span>').addClass('name').text(tweetData.user.name);
-  var handle = $('<span>').addClass('handle').text(tweetData.user.handle);
-  var header = $('<header>').append(image, name, handle);
+  var newTweet = $(`<article class='tweet trans'>`);
+  var image = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
+  var name = $(`<span class='name'>`).text(tweetData.user.name);
+  var handle = $(`<span class='handle'>`).text(tweetData.user.handle);
+  var header = $(`<header>`).append(image, name, handle);
 
-  var tweetText = $('<div>').addClass('tweet-text').text(tweetData.content.text);
+  var tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
   var icon1 = $(`<a href=''>`).append(`<i class='fa fa-flag'>`);
   var icon2 = $(`<a href=''>`).append(`<i class='fa fa-retweet'>`);
   var icon3 = $(`<a href=''>`).append(`<i class='fa fa-heart'>`);
-  var span = $('<span>').addClass('icons').append(icon1, icon2, icon3)
-  var footer = $('<footer>').addClass('tweet').text(`${timeAgo} seconds ago`).append(span);
+  var span = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+
+  var footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
   var timeCreated = tweetData.created_at;
+
   newTweet.append(header, tweetText, footer);
   return newTweet
   // console.log(seconds);
@@ -53,6 +54,7 @@ function createTweetElement(tweetData){
 
 }
 
+////PREPEND JUST THE NEW TWEET INSTEAD OF LOADING IT ALL
 function renderTweets(tweets) {
   $('#tweets-container').empty();
   for (let i in tweets){
@@ -61,10 +63,9 @@ function renderTweets(tweets) {
   }
 }
 
-
 $(document).ready(function(){
   function loadTweets(){
-    console.log('Performing ajax GET call...');
+    // console.log('Performing ajax GET call...');
     $.ajax({
       url: 'tweets',
       method: 'GET',
@@ -76,18 +77,20 @@ $(document).ready(function(){
   $('form').on('submit', function(event){
     var input = $(this).find('textarea').val();
     event.preventDefault()
+    ////FORM VALIDATION HELPER FUNCTION
     if(input.length >= 140){
-      //flash message for too many characters
+        $('span#error').remove();
         $(this).append(`<span id='error' class='char-limit'>Tweet over 140 characters</span>`);
         setTimeout(function(){
           $('span#error').remove();
-        }, 2000);
+        }, 1500);
       return;
     } else if(input === ''){
+        $('span#error').remove();
         $(this).append(`<span id='error' class='char-limit'>Tweet is empty</span>`);
         setTimeout(function(){
           $('span#error').remove();
-        }, 2000);
+        }, 1500);
       return;
     }
     $.ajax({
@@ -95,6 +98,7 @@ $(document).ready(function(){
       type: 'POST',
       data: { text: input },
       success: function() {
+        $('textarea').val('');
         console.log('Adding Tweet');
         loadTweets();
       }
@@ -102,10 +106,9 @@ $(document).ready(function(){
   });
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
-    if($composeTweetBox.css('display') == 'none'){
-      console.log('highlight');
+    if($composeTweetBox.css('display') === 'none'){
       $composeTweetBox.slideToggle();
-      $(this).closest('body').find('textarea').select();
+      $(this).closest('body').find('textarea').focus();
     } else{
       $composeTweetBox.slideToggle();
     }

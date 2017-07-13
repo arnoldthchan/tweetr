@@ -79,7 +79,7 @@ article.tweet span.handle{
   padding: 15px 10px;
   float: right;
 }
-article.tweet div.tweet-text{
+article.tweet p.tweet-text{
   padding: 2em 1em;
   word-wrap: break-word;
 }
