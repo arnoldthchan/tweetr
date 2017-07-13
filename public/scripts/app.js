@@ -16,10 +16,10 @@ function createTweetElement(tweetData){
   const timeAgo = Math.floor((currentTime - createTime) / 1000);
   //USER
   const newTweet = $(`<article class='tweet trans'>`);
-  const image = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
-  const name = $(`<span class='name'>`).text(tweetData.user.name);
-  const handle = $(`<span class='handle'>`).text(tweetData.user.handle);
-  const header = $(`<header>`).append(image, name, handle);
+  const image    = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
+  const name     = $(`<span class='name'>`).text(tweetData.user.name);
+  const handle   = $(`<span class ='handle'>`).text(tweetData.user.handle);
+  const header   = $(`<header>`).append(image, name, handle);
 
   const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
@@ -29,7 +29,7 @@ function createTweetElement(tweetData){
   const icon1 = $(`<i class='fa fa-flag'>`);
   const icon2 = $(`<i class='fa fa-retweet'>`);
   const icon3 = $(`<i class='fa fa-heart'>`);
-  const span = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+  const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
 
   const footer = $(`<footer class='tweet'>`).text(`${timeAgo} seconds ago`).append(span);
   const timeCreated = tweetData.created_at;

@@ -44,6 +44,7 @@ a:visited{
 section#tweets-container{
   position: relative;
   height: 100%;
+  width: 100%;
   background-color: white;
   color: #244751;
 }
@@ -56,10 +57,12 @@ article.tweet{
 }
 
 article.tweet header{
+  display:block;
   background-color: #eee;
   font-size: 150%;
   font-weight: bold;
   height: 75px;
+  width: 100%;
 }
 article.tweet img.avatar{
   float: left;
@@ -69,9 +72,10 @@ article.tweet img.avatar{
   border-radius: 15px;
 }
 article.tweet span.name{
-  padding: 0 5px;
-  position: relative;
-  top: 10px;
+  padding: 10px 5px;
+  position: static;
+  width: 45%;
+  display: inline-block;
 }
 article.tweet span.handle{
   font-size: 50%;
@@ -81,7 +85,7 @@ article.tweet span.handle{
   float: right;
 }
 article.tweet p.tweet-text{
-  padding: 2em 1em;
+  padding: 1em 1em;
   word-wrap: break-word;
 }
 article.tweet footer{
