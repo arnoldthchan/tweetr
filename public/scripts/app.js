@@ -94,6 +94,7 @@ $(document).ready(function(){
       }
     });
   }
+  //Event listener for when empty heart icon is clicked, changes to liked to true
   $('#tweets-container').on('click', 'i.fa-heart-o',function(event){
     const $tweetID = $(this).closest('article.tweet').data('id');
     const $liked = $(this).data('likes');
@@ -106,6 +107,7 @@ $(document).ready(function(){
         }
       });
     });
+  //Event listener for when red heart icon is clicked, changes to liked to false
   $('#tweets-container').on('click', 'i.fa-heart',function(event){
     const $tweetID = $(this).closest('article.tweet').data('id');
     const $liked = $(this).data('likes');

@@ -37,6 +37,7 @@
     display: block;
   }
   #nav-bar .logo{
+    display:none;
     min-width: 10%;
     height: auto;
     padding: 2%;
@@ -48,9 +49,8 @@
     padding: 2% 0%;
   }
   #compose{
+    display: block;
     padding: 2%;
-    height: 100%;
-    width: 35%;
-    margin: 2%;
-    font-size: 120%;
+    margin: 4% auto;
+    font-size: 100%;
 }
