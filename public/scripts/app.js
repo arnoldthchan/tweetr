@@ -21,10 +21,10 @@ function createTweetElement(tweetData){
     var icon3 = $(`<i data-likes=${tweetData.liked} class='fa fa-heart-o'>`);
   }
 
-  const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
-  const header   = $(`<header>`).append(image, name, handle);
-  const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
-  const footer = $(`<footer class='tweet'>`).text(calculateSince(tweetData.created_at)).append(span);
+  const span        = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+  const header      = $(`<header>`).append(image, name, handle);
+  const tweetText   = $(`<p class='tweet-text'>`).text(tweetData.content.text);
+  const footer      = $(`<footer class='tweet'>`).text(calculateSince(tweetData.created_at)).append(span);
   const timeCreated = tweetData.created_at;
 
   newTweet.append(header, tweetText, footer);
@@ -61,6 +61,7 @@ $(document).ready(function(){
     if($composeTweetBox.css('display') === 'none'){
       $composeTweetBox.slideToggle();
       $(this).closest('body').find('textarea').focus();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
     } else{
       $composeTweetBox.slideToggle();
     }
@@ -101,7 +102,6 @@ $(document).ready(function(){
       $.ajax({
         url: `/tweets/${$tweetID}/likes/`,
         type: 'PUT',
-        data: { liked: true },
         success: function(res, status) {
           loadTweets();
         }
@@ -114,7 +114,6 @@ $(document).ready(function(){
       $.ajax({
         url: `/tweets/${$tweetID}/unlikes/`,
         type: 'PUT',
-        data: { liked: false },
         success: function(res, status) {
           loadTweets();
         }
