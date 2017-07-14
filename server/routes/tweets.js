@@ -41,7 +41,7 @@ module.exports = function(DataHelpers) {
        }
      });
   });
-
+  // PUT Request for liking a tweet
   tweetsRoutes.put("/:id/likes/", function(req, res){
     DataHelpers.changeLikes(req.params.id, true,(err)=>{
        if (err) {
@@ -51,7 +51,7 @@ module.exports = function(DataHelpers) {
        }
     });
   });
-
+  //PUT Request for unliking an already liked tweet
   tweetsRoutes.put("/:id/unlikes/", function(req, res){
     DataHelpers.changeLikes(req.params.id, false,(err)=>{
        if (err) {
