@@ -18,7 +18,7 @@ function createTweetElement(tweetData){
 
   const icon1 = $(`<i class='fa fa-flag'>`);
   const icon2 = $(`<i class='fa fa-retweet'>`);
-  const icon3 = $(`<i class='fa fa-heart'>`);
+  const icon3 = $(`<i data-likes='0' class='fa fa-heart'>`);
   const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
 
   const footer = $(`<footer class='tweet'>`).text(calculateSince(tweetData.created_at)).append(span);
@@ -91,5 +91,17 @@ $(document).ready(function(){
       }
     });
   }
+  $('#tweets-container').on('click', 'i.fa-heart',function(event){
+    let $likes = $(this).data('likes');
+    if($(this).hasClass('char-limit')){
+    // if($(this).data('likes') === 1){
+      $(this).removeClass('char-limit');
+      $likes =  null;
+    } else{
+      $(this).addClass('char-limit');
+      $likes = 1;
+    }
+    // $(this).text($likes);
+  })
   loadTweets();
 });

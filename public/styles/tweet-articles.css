@@ -49,7 +49,7 @@ article.tweet footer{
   }
   article.tweet span.name{
     font-size: 125%;
-    padding: 2%;
+    padding: 4%;
     margin: auto;
     text-align: center;
     width:100%;
@@ -65,11 +65,11 @@ article.tweet footer{
   article.tweet footer{
     float:none;
     text-align: center;
-    font-size: 125%;
+    font-size: 100%;
   }
   article.tweet p.tweet-text{
     text-align: center;
-    font-size: 200%;
+    font-size: 150%;
     padding:0;
   }
 }
