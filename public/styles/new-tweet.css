@@ -51,7 +51,7 @@ section#tweets-container{
   color: #244751;
 }
 /*Responsive CSS for when screen gets very small*/
-@media (max-device-width: 450px){
+@media (max-width: 450px){
   h2{
     text-align: center;
   }
