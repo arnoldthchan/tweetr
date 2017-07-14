@@ -29,7 +29,8 @@ module.exports = function(DataHelpers) {
       content: {
         text: req.body.text
       },
-      created_at: Date.now()
+      created_at: Date.now(),
+      liked: false
     };
 
      DataHelpers.saveTweet(tweet, (err) => {
@@ -41,6 +42,25 @@ module.exports = function(DataHelpers) {
      });
   });
 
+  tweetsRoutes.put("/:id/likes/", function(req, res){
+    DataHelpers.changeLikes(req.params.id, true,(err)=>{
+       if (err) {
+         res.status(500).json({ error: err.message });
+       } else {
+         res.status(201).send();
+       }
+    });
+  });
+
+  tweetsRoutes.put("/:id/unlikes/", function(req, res){
+    DataHelpers.changeLikes(req.params.id, false,(err)=>{
+       if (err) {
+         res.status(500).json({ error: err.message });
+       } else {
+         res.status(201).send();
+       }
+    });
+  });
   return tweetsRoutes;
 
 }

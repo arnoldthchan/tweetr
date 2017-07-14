@@ -40,9 +40,6 @@ section.new-tweet{
 i.fa{
   padding: 3px;
 }
-a:visited{
-  color: #00a087;
-}
 section#tweets-container{
   position: relative;
   height: 100%;

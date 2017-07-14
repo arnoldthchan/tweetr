@@ -4,23 +4,26 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-"use strict";
+// "use strict";
 
 //User Creation function, returns newtweet with HTML tags
 function createTweetElement(tweetData){
-  const newTweet = $(`<article class='tweet trans'>`);
+  const newTweet = $(`<article data-id='${tweetData._id}'class='tweet trans'>`);
   const image    = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
   const name     = $(`<span class='name'>`).text(tweetData.user.name);
   const handle   = $(`<span class ='handle'>`).text(tweetData.user.handle);
-  const header   = $(`<header>`).append(image, name, handle);
-
-  const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
 
   const icon1 = $(`<i class='fa fa-flag'>`);
   const icon2 = $(`<i class='fa fa-retweet'>`);
-  const icon3 = $(`<i data-likes='0' class='fa fa-heart'>`);
-  const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+  if (tweetData.liked === true){
+    var icon3 = $(`<i data-likes=${tweetData.liked} class='fa fa-heart char-limit'>`);
+  } else {
+    var icon3 = $(`<i data-likes=${tweetData.liked} class='fa fa-heart-o'>`);
+  }
 
+  const span  = $(`<span class='icons'>`).append(icon1, icon2, icon3)
+  const header   = $(`<header>`).append(image, name, handle);
+  const tweetText = $(`<p class='tweet-text'>`).text(tweetData.content.text);
   const footer = $(`<footer class='tweet'>`).text(calculateSince(tweetData.created_at)).append(span);
   const timeCreated = tweetData.created_at;
 
@@ -91,17 +94,29 @@ $(document).ready(function(){
       }
     });
   }
+  $('#tweets-container').on('click', 'i.fa-heart-o',function(event){
+    const $tweetID = $(this).closest('article.tweet').data('id');
+    const $liked = $(this).data('likes');
+      $.ajax({
+        url: `/tweets/${$tweetID}/likes/`,
+        type: 'PUT',
+        data: { liked: true },
+        success: function(res, status) {
+          loadTweets();
+        }
+      });
+    });
   $('#tweets-container').on('click', 'i.fa-heart',function(event){
-    let $likes = $(this).data('likes');
-    if($(this).hasClass('char-limit')){
-    // if($(this).data('likes') === 1){
-      $(this).removeClass('char-limit');
-      $likes =  null;
-    } else{
-      $(this).addClass('char-limit');
-      $likes = 1;
-    }
-    // $(this).text($likes);
-  })
+    const $tweetID = $(this).closest('article.tweet').data('id');
+    const $liked = $(this).data('likes');
+      $.ajax({
+        url: `/tweets/${$tweetID}/unlikes/`,
+        type: 'PUT',
+        data: { liked: false },
+        success: function(res, status) {
+          loadTweets();
+        }
+      });
+    });
   loadTweets();
 });

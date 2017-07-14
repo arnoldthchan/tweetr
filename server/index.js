@@ -15,18 +15,6 @@ const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-/*
-sass.render({
-  file: scss_filename,
-  [, options..]
-}, function(err, result) { ASDASD});
-// OR
-var result = sass.renderSync({
-  data: scss_content
-  [, options..]
-});
-*/
-
 
 // The in-memory database of tweets. It's a basic object with an array in it.
 MongoClient.connect(MONGODB_URI, (err, db) => {
