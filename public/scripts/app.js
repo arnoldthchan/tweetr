@@ -4,8 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// "use strict";
-
 //User Creation function, returns newtweet with HTML tags
 function createTweetElement(tweetData){
   const newTweet = $(`<article data-id='${tweetData._id}'class='tweet trans'>`);
@@ -15,6 +13,7 @@ function createTweetElement(tweetData){
 
   const icon1 = $(`<i class='fa fa-flag'>`);
   const icon2 = $(`<i class='fa fa-retweet'>`);
+  //Changes like icon in span depending on if liked or not
   if (tweetData.liked === true){
     var icon3 = $(`<i data-likes=${tweetData.liked} class='fa fa-heart char-limit'>`);
   } else {

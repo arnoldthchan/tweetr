@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-// The in-memory database of tweets. It's a basic object with an array in it.
+//Connecting to the MongoDB database
 MongoClient.connect(MONGODB_URI, (err, db) => {
   if (err) throw err;
   console.log(`Successfully connected to DB: ${MONGODB_URI}`);

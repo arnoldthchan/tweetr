@@ -1,3 +1,5 @@
+//Event listener for when articles/tweets get mouseovered
+
 $(document).ready(function(){
   $('#tweets-container').on('mouseenter', 'article', function(){
     $(this).removeClass('trans');
