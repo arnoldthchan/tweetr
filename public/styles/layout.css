@@ -33,7 +33,7 @@ main.container{
   background-color: white;
 }
 /*Responsive CSS for when screen gets very small*/
-@media (max-width: 450px){
+@media (max-device-width: 450px){
   main.container{
     width: 100%;
     display: block;

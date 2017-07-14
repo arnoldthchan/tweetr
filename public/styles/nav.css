@@ -5,7 +5,6 @@
   height: auto;
   color: #e8fdff;
   padding: 0em 2em;
-  top:0px;
   z-index: 1;
   display: inline-block;
 }
@@ -30,31 +29,27 @@
   border-radius: 5px;
   border: 1px solid black;
   font-size: 120%;
-  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /*Responsive CSS for when screen gets very small*/
-@media (max-width: 380px){
+@media (max-device-width: 450px){
   #nav-bar{
-    padding:0;
     display: block;
   }
   #nav-bar .logo{
-    display: none;
+    min-width: 10%;
+    height: auto;
+    padding: 2%;
   }
   #nav-bar .header{
-    line-height: 100%;
-    float: none;
-    margin: 2% 0%;
-    text-align: center;
-    margin: auto;
+    line-height: 150%;
+    margin: 0;
     display:block;
+    padding: 2% 0%;
   }
   #compose{
-    padding: 2%;
-    display: block;
-    float: none;
-    width: 50%;
-    margin: 5% auto;
+    height: 100%;
+    width: 20%;
+    margin: 2%;
     font-size: 100%;
 }

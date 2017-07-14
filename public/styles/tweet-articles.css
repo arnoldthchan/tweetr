@@ -1,7 +1,7 @@
 article.tweet{
   border-radius: 5px;
   border: 2px solid #d3d3d3;
-  margin: 15px auto;
+  margin: 2% auto;
   width: 80%;
   overflow: hidden;
 }
@@ -43,29 +43,33 @@ article.tweet footer{
   font-size: 75%;
 }
 
-@media (max-width: 450px){
+@media (max-device-width: 450px){
   article.tweet img.avatar{
     display: none;
   }
   article.tweet span.name{
-    font-size: 85%;
-    padding:5%;
+    font-size: 125%;
+    padding: 2%;
     margin: auto;
     text-align: center;
     width:100%;
-    line-height: 100%;
+    line-height: 50%;
   }
   article.tweet span.handle{
     float: none;
     padding:0;
+    font-size: 100%;
     text-align: center;
+    color: #244751;
   }
   article.tweet footer{
     float:none;
     text-align: center;
+    font-size: 125%;
   }
   article.tweet p.tweet-text{
     text-align: center;
+    font-size: 200%;
     padding:0;
   }
 }

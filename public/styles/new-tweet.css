@@ -51,12 +51,9 @@ section#tweets-container{
   color: #244751;
 }
 /*Responsive CSS for when screen gets very small*/
-@media (max-width: 450px){
+@media (max-device-width: 450px){
   h2{
     text-align: center;
-  }
-  textarea{
-    font-size:70%;
   }
   span.icons{
     display: block;
@@ -64,8 +61,6 @@ section#tweets-container{
     margin:auto;
   }
   section.new-tweet{
-    margin-top: auto;
     display: block;
-
   }
 }
