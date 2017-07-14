@@ -5,7 +5,6 @@ article.tweet{
   width: 80%;
   overflow: hidden;
 }
-
 article.tweet header{
   display:block;
   background-color: #eee;
@@ -43,6 +42,7 @@ article.tweet footer{
   padding: 10px;
   font-size: 75%;
 }
+
 @media (max-width: 450px){
   article.tweet img.avatar{
     display: none;

@@ -20,6 +20,7 @@ section.new-tweet{
   border-radius: 5px;
   border: 1px solid #d3d3d3;
 }
+/*Mainly used for the counter*/
 .char-limit{
   color: red;
 }
@@ -49,13 +50,13 @@ section#tweets-container{
   background-color: white;
   color: #244751;
 }
-
+/*Responsive CSS for when screen gets very small*/
 @media (max-width: 450px){
   h2{
     text-align: center;
   }
   textarea{
-    font-size:75%;
+    font-size:70%;
   }
   span.icons{
     display: block;

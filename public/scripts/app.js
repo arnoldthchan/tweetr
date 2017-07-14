@@ -6,9 +6,8 @@
 
 "use strict";
 
+//User Creation function, returns newtweet with HTML tags
 function createTweetElement(tweetData){
-
-  //User Creation
   const newTweet = $(`<article class='tweet trans'>`);
   const image    = $(`<img class='avatar'>`).attr('src', tweetData.user.avatars.regular);
   const name     = $(`<span class='name'>`).text(tweetData.user.name);
@@ -28,7 +27,7 @@ function createTweetElement(tweetData){
   newTweet.append(header, tweetText, footer);
   return newTweet
 }
-
+//Iterates through tweets database and uses createTweetElement to prepend to container
 function renderTweets(tweets) {
   $('#tweets-container').empty();
   for (let i in tweets){
@@ -47,12 +46,13 @@ $(document).ready(function(){
       }
     });
   }
+  //Prevents refreshing of page on submit
   $('form').on('submit', function(event){
     var input = $(this).find('textarea').val();
     event.preventDefault()
     validateTweetPost(input);
   });
-
+  //Toggles visibility of new-tweet container when compose is clicked
   $('#compose').on('click', function(event){
     var $composeTweetBox = $(this).closest('body').find('section.new-tweet');
     if($composeTweetBox.css('display') === 'none'){
@@ -62,7 +62,7 @@ $(document).ready(function(){
       $composeTweetBox.slideToggle();
     }
   });
-
+  //Checks if submitted tweet is blank or over 140 characters
   function validateTweetPost(tweet){
     if(tweet.length >= 140){
       $('span#error').remove();
@@ -79,6 +79,7 @@ $(document).ready(function(){
       }, 1500);
     return;
   }
+    //Posts to database and resets textarea/counter
     $.ajax({
       url: 'tweets',
       type: 'POST',

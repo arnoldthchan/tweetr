@@ -32,6 +32,8 @@
   font-size: 120%;
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+/*Responsive CSS for when screen gets very small*/
 @media (max-width: 380px){
   #nav-bar{
     padding:0;

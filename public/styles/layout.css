@@ -27,12 +27,12 @@ body {
 
 main.container{
   padding-top: 140px;
-  width: 80%;
+  width: 75%;
   height: 100%;
   margin: 0 auto;
   background-color: white;
 }
-
+/*Responsive CSS for when screen gets very small*/
 @media (max-width: 450px){
   main.container{
     width: 100%;
